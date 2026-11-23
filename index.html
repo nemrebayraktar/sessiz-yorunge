@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="theme-color" content="#07080c" />
     <title>Sessiz Yörünge</title>
-    <script type="module" crossorigin src="./assets/index-DtMKgZsa.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BTa8xhui.css">
+    <script type="module" crossorigin src="./assets/index-D53Z_VFD.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BeBDryVB.css">
   </head>
   <body>
     <div id="app">
@@ -76,6 +76,10 @@
         <div id="floats"></div>
         <div id="heat" class="hidden"><span>Isı</span><i id="heat-fill"></i></div>
         <p id="unlock"></p>
+        <div id="beacons"></div>
+        <p id="heading">Yön 0°</p>
+        <p id="route-hint"></p>
+        <button id="btn-map" type="button">Harita</button>
         <div id="horizon" aria-hidden="true"><span id="horizon-line"></span></div>
         <p id="prompt" aria-live="polite"></p>
         <p id="toast" aria-live="polite"></p>
@@ -123,6 +127,15 @@
           <button type="button" data-act="land">İn</button>
           <button type="button" data-act="jump" class="foot-only">Zıpla</button>
           <button type="button" data-act="punch" class="foot-only">Yumruk</button>
+        </div>
+      </div>
+
+      <div id="starmap" class="overlay hidden">
+        <div class="panel wide">
+          <p class="eyebrow">Rota</p>
+          <h2>Nereye</h2>
+          <div id="map-list"></div>
+          <button id="map-close" class="primary" type="button">Kapat</button>
         </div>
       </div>
 
