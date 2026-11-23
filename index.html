@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#07080c" />
+    <title>Sessiz Yörünge</title>
+    <script type="module" crossorigin src="./assets/index-dhO7D5DP.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DByK_GO7.css">
+  </head>
+  <body>
+    <div id="app">
+      <div id="vignette"></div>
+      <div id="grav"></div>
+      <div id="hurt"></div>
+      <div id="canopy"></div>
+      <div id="flash"></div>
+
+      <div id="intro">
+        <p id="intro-text"></p>
+        <p id="intro-skip">Atlamak için bir tuşa bas ya da tıkla</p>
+      </div>
+
+      <div id="title" class="hidden">
+        <div class="title-block">
+          <div class="mark" aria-hidden="true"></div>
+          <p class="eyebrow">Karanlık orman</p>
+          <h1>Sessiz Yörünge</h1>
+          <p class="tag">Duyulma. Avlanma.</p>
+          <div class="row">
+            <button id="btn-start" class="primary" type="button">Başla</button>
+            <button id="btn-controls" type="button">Kontroller</button>
+          </div>
+          <label class="check">
+            <input id="easy-title" type="checkbox" />
+            Kolay mod — kanatlar kendini düzler
+          </label>
+          <p class="fine">Motor sesi seni ele verir.</p>
+        </div>
+      </div>
+
+      <div id="hud" class="hidden">
+        <header class="top">
+          <div class="clocks">
+            <div><span>Yerel</span><strong id="clk-local">00:00</strong></div>
+            <div><span>Dış</span><strong id="clk-out">00:00</strong></div>
+            <div class="ratio">
+              <span>Zaman oranı</span>
+              <strong id="time-ratio">1,00×</strong>
+              <div class="ratio-track"><i id="ratio-fill"></i></div>
+              <em id="world-mul">dış dünya ×1,00</em>
+            </div>
+          </div>
+          <div class="flight">
+            <div><span>Hız</span><strong id="speed">0</strong></div>
+            <div><span>Uzaklık</span><strong id="dist">0</strong></div>
+            <div id="badge-easy" class="badge hidden">Kolay</div>
+            <div id="badge-stable" class="badge hidden">Denge</div>
+            <div id="uni-name" class="badge">Sessiz Avlu</div>
+          </div>
+          <div class="scores">
+            <div><span>Skor</span><strong id="score">0</strong></div>
+            <div><span>En iyi</span><strong id="best">0</strong></div>
+            <div><span>Enerji</span><strong id="energy">0</strong></div>
+          </div>
+        </header>
+
+        <div id="crosshair" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div id="horizon" aria-hidden="true"><span id="horizon-line"></span></div>
+        <p id="prompt" aria-live="polite"></p>
+        <p id="toast" aria-live="polite"></p>
+        <p id="lock-hint">Bakış için tıkla</p>
+        <div id="abilities">
+          <button id="ab1" type="button" class="hidden"><kbd>G</kbd> <span id="ab1-name"></span> <b id="ab1-cd"></b></button>
+          <button id="ab2" type="button" class="hidden"><kbd>H</kbd> <span id="ab2-name"></span> <b id="ab2-cd"></b></button>
+        </div>
+
+        <footer class="bottom">
+          <div class="bars">
+            <label>Gövde <b id="hull-num">100</b></label>
+            <div class="track hull"><i id="hull-fill"></i></div>
+            <label>Kalkan <b id="shield-num">50</b></label>
+            <div class="track shield"><i id="shield-fill"></i></div>
+          </div>
+          <div id="vis">
+            <div class="vis-label"><span>Görünürlük</span><b id="vis-num">0</b></div>
+            <div class="vis-track">
+              <i id="vis-fill"></i>
+              <em style="left: 36%"></em>
+              <em style="left: 64%"></em>
+              <em style="left: 88%"></em>
+            </div>
+          </div>
+          <div class="radar-wrap">
+            <canvas id="radar" width="180" height="180"></canvas>
+            <span id="radar-label">Radar</span>
+          </div>
+        </footer>
+      </div>
+
+      <div id="touch">
+        <div id="stick" aria-hidden="true"><div id="knob"></div></div>
+        <div id="touch-buttons">
+          <button type="button" data-act="rollL">Q</button>
+          <button type="button" data-act="up">Yukarı</button>
+          <button type="button" data-act="boost">Hız</button>
+          <button type="button" data-act="rollR">E</button>
+          <button type="button" data-act="down">Aşağı</button>
+          <button type="button" data-act="fire" class="fire">Ateş</button>
+          <button type="button" data-act="ab1">G</button>
+          <button type="button" data-act="ab2">H</button>
+        </div>
+      </div>
+
+      <div id="select" class="overlay hidden">
+        <div class="select-panel">
+          <p class="eyebrow">Yuva seç</p>
+          <h2 id="sel-planet">Dünya</h2>
+          <p id="sel-dist" class="tag"></p>
+          <p id="sel-fact"></p>
+          <p id="sel-pilot" class="fine"></p>
+          <canvas id="sel-portrait" width="220" height="280"></canvas>
+          <div id="sel-stats"></div>
+          <p id="sel-ability" class="fine"></p>
+          <p id="sel-legend" class="legend-tag hidden">Efsane · zor kazanılan</p>
+          <div class="row">
+            <button id="sel-prev" type="button">Önceki</button>
+            <button id="sel-go" class="primary" type="button">Bu gemiyle uç</button>
+            <button id="sel-next" type="button">Sonraki</button>
+          </div>
+          <div id="sel-bar" class="origin-bar"></div>
+        </div>
+      </div>
+
+      <div id="controls" class="overlay hidden">
+        <div class="panel wide">
+          <p class="eyebrow">Gemi</p>
+          <h2>Kontroller</h2>
+          <ul class="keys">
+            <li><kbd>W</kbd><kbd>S</kbd><span>İleri / geri itiş</span></li>
+            <li><kbd>A</kbd><kbd>D</kbd><span>Sola / sağa kay</span></li>
+            <li><kbd>Boşluk</kbd><kbd>Ctrl</kbd><span>Yukarı / aşağı</span></li>
+            <li><kbd>Fare</kbd><span>Yunuslama ve sapma. Tuvale tıklayınca işaretçi kilitlenir; kilit yoksa basılı tut.</span></li>
+            <li><kbd>Q</kbd><kbd>E</kbd><span>Yuvarlanma</span></li>
+            <li><kbd>Shift</kbd><span>Hızlandırma — çok gürültülü</span></li>
+            <li><kbd>Sol tık</kbd><span>Ateş — gürültülü</span></li>
+            <li><kbd>R</kbd><span>Dengele, ufka yat</span></li>
+            <li><kbd>C</kbd><span>Kamera: kovalamaca / kokpit</span></li>
+            <li><kbd>F</kbd><span>Filoyla kapış, ya da yeterince uzaktaysan kaç</span></li>
+            <li><kbd>Esc</kbd><span>Duraklat</span></li>
+            <li><kbd>G</kbd><span>Özel yetenek (karanlık, filiz veya sersemlet)</span></li>
+            <li><kbd>H</kbd><span>Mini kara delik — yalnız Kepler-452b</span></li>
+            <li><kbd>M</kbd><span>Sesi kapat / aç</span></li>
+          </ul>
+          <p class="fine">Kolay modda gemi kanatlarını dünya yukarısına göre düz tutar. Ok tuşları da işe yarar. Sessiz sürüklenmek seni gizler; itiş, hız ve ateş görünürlük biriktirir.</p>
+          <button id="controls-close" class="primary" type="button">Kapat</button>
+        </div>
+      </div>
+
+      <div id="pause" class="overlay hidden">
+        <div class="panel">
+          <p class="eyebrow">Durdu</p>
+          <h2>Duraklatıldı</h2>
+          <button id="pa-resume" class="primary" type="button">Devam</button>
+          <button id="pa-controls" type="button">Kontroller</button>
+          <div class="settings">
+            <label class="check"><input id="set-easy" type="checkbox" /> Kolay mod</label>
+            <label class="slider">Ses <input id="set-vol" type="range" min="0" max="1" step="0.01" /></label>
+            <label class="slider">Fare hassasiyeti <input id="set-sens" type="range" min="0.4" max="2.2" step="0.01" /></label>
+          </div>
+          <p id="pa-levels" class="fine"></p>
+          <button id="pa-restart" type="button">Yeniden başlat</button>
+          <button id="pa-menu" type="button">Ana menü</button>
+        </div>
+      </div>
+
+      <div id="upgrade" class="overlay hidden">
+        <div class="panel wide">
+          <p class="eyebrow">Ganimet</p>
+          <h2>Geliştirme</h2>
+          <p id="up-loot" class="tag"></p>
+          <p id="up-energy"></p>
+          <div id="up-list"></div>
+          <button id="up-continue" class="primary" type="button">Devam et</button>
+        </div>
+      </div>
+
+      <div id="gameover" class="overlay hidden">
+        <div class="panel">
+          <p class="eyebrow">Sessizlik bitti</p>
+          <h2 id="go-title">Avlandın</h2>
+          <p id="go-reason"></p>
+          <div class="scoreline"><span>Skor</span><strong id="go-score">0</strong></div>
+          <div class="scoreline"><span>Düşürülen</span><strong id="go-kills">0</strong></div>
+          <div class="scoreline"><span>En iyi</span><strong id="go-best">0</strong></div>
+          <button id="go-retry" class="primary" type="button">Yeniden başla</button>
+          <button id="go-menu" type="button">Ana menü</button>
+        </div>
+      </div>
+
+      <div id="fade"></div>
+      <p id="fatal" hidden>WebGL olmadan uzay kurulamıyor.</p>
+    </div>
+  </body>
+</html>
