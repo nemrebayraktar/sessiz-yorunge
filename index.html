@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="theme-color" content="#07080c" />
     <title>Sessiz Yörünge</title>
-    <script type="module" crossorigin src="./assets/index-Be1X4fd5.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-A6z3cghM.css">
+    <script type="module" crossorigin src="./assets/index-DtMKgZsa.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BTa8xhui.css">
   </head>
   <body>
     <div id="app">
@@ -60,6 +60,8 @@
             <div id="uni-name" class="badge">Sessiz Avlu</div>
             <div id="weapon-name" class="badge">Lazer</div>
             <p id="worm-net"></p>
+            <p id="netmap"></p>
+            <div id="home-flag" class="badge hidden">Ev sistemi</div>
           </div>
           <div class="scores">
             <div><span>Skor</span><strong id="score">0</strong></div>
@@ -69,6 +71,11 @@
         </header>
 
         <div id="crosshair" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div id="hitmark" aria-hidden="true"></div>
+        <div id="lock-on" class="hidden" aria-hidden="true"></div>
+        <div id="floats"></div>
+        <div id="heat" class="hidden"><span>Isı</span><i id="heat-fill"></i></div>
+        <p id="unlock"></p>
         <div id="horizon" aria-hidden="true"><span id="horizon-line"></span></div>
         <p id="prompt" aria-live="polite"></p>
         <p id="toast" aria-live="polite"></p>
@@ -157,7 +164,7 @@
             <li><kbd>Esc</kbd><span>Duraklat</span></li>
             <li><kbd>G</kbd><span>Özel yetenek (karanlık, filiz veya sersemlet)</span></li>
             <li><kbd>H</kbd><span>Mini kara delik — yalnız Kepler-452b</span></li>
-            <li><kbd>X</kbd><span>Silah değiştir: lazer, saçma, roket, plazma, şimşek</span></li>
+            <li><kbd>X</kbd><span>Açık silahlar arasında geç. Yenileri skorla açılır.</span></li>
             <li><kbd>L</kbd><span>Gezegene in, ya da yüzeyde gemiye bin</span></li>
             <li><kbd>F</kbd><span>Yüzeyde yumruk. Uzayda filoyla kapış.</span></li>
             <li><kbd>Boşluk</kbd><span>Yüzeyde zıpla. Küçük gezegende yükselir, büyükte alçalır.</span></li>
@@ -178,6 +185,8 @@
             <label class="check"><input id="set-easy" type="checkbox" /> Kolay mod</label>
             <label class="slider">Ses <input id="set-vol" type="range" min="0" max="1" step="0.01" /></label>
             <label class="slider">Fare hassasiyeti <input id="set-sens" type="range" min="0.4" max="2.2" step="0.01" /></label>
+            <label class="slider">Joystick ölü bölge <input id="set-dead" type="range" min="0.05" max="0.4" step="0.01" /></label>
+            <label class="slider">Joystick hassasiyeti <input id="set-stick" type="range" min="0.6" max="1.6" step="0.01" /></label>
           </div>
           <p id="pa-levels" class="fine"></p>
           <button id="pa-restart" type="button">Yeniden başlat</button>
