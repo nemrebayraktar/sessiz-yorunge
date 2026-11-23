@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="theme-color" content="#07080c" />
     <title>Sessiz Yörünge</title>
-    <script type="module" crossorigin src="./assets/index-dhO7D5DP.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DByK_GO7.css">
+    <script type="module" crossorigin src="./assets/index-Be1X4fd5.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-A6z3cghM.css">
   </head>
   <body>
     <div id="app">
@@ -58,6 +58,8 @@
             <div id="badge-easy" class="badge hidden">Kolay</div>
             <div id="badge-stable" class="badge hidden">Denge</div>
             <div id="uni-name" class="badge">Sessiz Avlu</div>
+            <div id="weapon-name" class="badge">Lazer</div>
+            <p id="worm-net"></p>
           </div>
           <div class="scores">
             <div><span>Skor</span><strong id="score">0</strong></div>
@@ -110,6 +112,10 @@
           <button type="button" data-act="fire" class="fire">Ateş</button>
           <button type="button" data-act="ab1">G</button>
           <button type="button" data-act="ab2">H</button>
+          <button type="button" data-act="weapon">Silah</button>
+          <button type="button" data-act="land">İn</button>
+          <button type="button" data-act="jump" class="foot-only">Zıpla</button>
+          <button type="button" data-act="punch" class="foot-only">Yumruk</button>
         </div>
       </div>
 
@@ -151,9 +157,13 @@
             <li><kbd>Esc</kbd><span>Duraklat</span></li>
             <li><kbd>G</kbd><span>Özel yetenek (karanlık, filiz veya sersemlet)</span></li>
             <li><kbd>H</kbd><span>Mini kara delik — yalnız Kepler-452b</span></li>
+            <li><kbd>X</kbd><span>Silah değiştir: lazer, saçma, roket, plazma, şimşek</span></li>
+            <li><kbd>L</kbd><span>Gezegene in, ya da yüzeyde gemiye bin</span></li>
+            <li><kbd>F</kbd><span>Yüzeyde yumruk. Uzayda filoyla kapış.</span></li>
+            <li><kbd>Boşluk</kbd><span>Yüzeyde zıpla. Küçük gezegende yükselir, büyükte alçalır.</span></li>
             <li><kbd>M</kbd><span>Sesi kapat / aç</span></li>
           </ul>
-          <p class="fine">Kolay modda gemi kanatlarını dünya yukarısına göre düz tutar. Ok tuşları da işe yarar. Sessiz sürüklenmek seni gizler; itiş, hız ve ateş görünürlük biriktirir.</p>
+          <p class="fine">Yüzeyde kürenin çevresinde yürürsün. Solucan deliklerinin üstünde gideceği evren yazar. Dokunmatikte İn/Bin, Silah, Zıpla ve Yumruk butonları vardır. Kolay modda gemi kanatlarını dünya yukarısına göre düz tutar. Dev avcıların tepesinde can çubuğu, gövdesinde parlak bir zayıf nokta vardır.</p>
           <button id="controls-close" class="primary" type="button">Kapat</button>
         </div>
       </div>
