@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="theme-color" content="#07080c" />
     <title>Sessiz Yörünge</title>
-    <script type="module" crossorigin src="./assets/index-D53Z_VFD.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BeBDryVB.css">
+    <script type="module" crossorigin src="./assets/index-DNybcP6r.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BQ4emeSA.css">
   </head>
   <body>
     <div id="app">
@@ -62,6 +62,7 @@
             <p id="worm-net"></p>
             <p id="netmap"></p>
             <div id="home-flag" class="badge hidden">Ev sistemi</div>
+            <div id="colony-flag" class="badge hidden">Koloni 0</div>
           </div>
           <div class="scores">
             <div><span>Skor</span><strong id="score">0</strong></div>
@@ -74,6 +75,11 @@
         <div id="hitmark" aria-hidden="true"></div>
         <div id="lock-on" class="hidden" aria-hidden="true"></div>
         <div id="floats"></div>
+        <div id="base-hud" class="hidden">
+          <p id="base-title"></p>
+          <div class="track hull"><i id="base-core-fill"></i></div>
+          <p id="base-line"></p>
+        </div>
         <div id="heat" class="hidden"><span>Isı</span><i id="heat-fill"></i></div>
         <p id="unlock"></p>
         <div id="beacons"></div>
@@ -127,6 +133,9 @@
           <button type="button" data-act="land">İn</button>
           <button type="button" data-act="jump" class="foot-only">Zıpla</button>
           <button type="button" data-act="punch" class="foot-only">Yumruk</button>
+          <button type="button" data-act="build" class="foot-only">Üs</button>
+          <button type="button" data-act="turret" class="foot-only">Taret</button>
+          <button type="button" data-act="wave" class="foot-only">Dalga</button>
         </div>
       </div>
 
@@ -181,9 +190,12 @@
             <li><kbd>L</kbd><span>Gezegene in, ya da yüzeyde gemiye bin</span></li>
             <li><kbd>F</kbd><span>Yüzeyde yumruk. Uzayda filoyla kapış.</span></li>
             <li><kbd>Boşluk</kbd><span>Yüzeyde zıpla. Küçük gezegende yükselir, büyükte alçalır.</span></li>
+            <li><kbd>B</kbd><span>Yüzeyde üs kur (kendi gezegenin) ya da karakol kur (başka gezegen). Üsün yanında: onar / yükselt.</span></li>
+            <li><kbd>T</kbd><span>Üssün yanında taret kur. Taretler uzaylı dalgalarını kendi vurur.</span></li>
+            <li><kbd>V</kbd><span>Sıradaki uzaylı dalgasını erken çağır (daha çok ödül).</span></li>
             <li><kbd>M</kbd><span>Sesi kapat / aç</span></li>
           </ul>
-          <p class="fine">Yüzeyde kürenin çevresinde yürürsün. Solucan deliklerinin üstünde gideceği evren yazar. Dokunmatikte İn/Bin, Silah, Zıpla ve Yumruk butonları vardır. Kolay modda gemi kanatlarını dünya yukarısına göre düz tutar. Dev avcıların tepesinde can çubuğu, gövdesinde parlak bir zayıf nokta vardır.</p>
+          <p class="fine">Yüzeyde kürenin çevresinde yürürsün. Solucan deliklerinin üstünde gideceği evren yazar. Dokunmatikte İn/Bin, Silah, Zıpla ve Yumruk butonları vardır. Kolay modda gemi kanatlarını dünya yukarısına göre düz tutar. Dev avcıların tepesinde can çubuğu, gövdesinde parlak bir zayıf nokta vardır. Üs savunması: kendi gezegeninde üs kur, taret dik, dalgaları savuştur. Başka gezegende karakol kurup üç dalgayı tutarsan gezegen koloni olur; koloniler enerji ve kalkan bonusu verir.</p>
           <button id="controls-close" class="primary" type="button">Kapat</button>
         </div>
       </div>
